@@ -1,0 +1,12 @@
+PeridotHttpServer p = new PeridotHttpServer("public_html",9091);
+CustomEndpoint c = new CustomEndpoint("test","localhost",4443);
+c.IPBlacklist.Add("::1");
+p.createCustomEndpoint(c);
+CustomEndpoint cc = new CustomEndpoint("test", "localhost", 4444);
+cc.IPWhitelist.Add("::1");
+p.createCustomEndpoint(cc);
+CustomEndpoint a = new CustomEndpoint("test", "localhost", 4445);
+AuthCredentials auth = new AuthCredentials("root", "root");
+a.UserCredentials.Add(auth);
+p.createCustomEndpoint(a);
+Console.ReadLine();
