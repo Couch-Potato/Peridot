@@ -111,7 +111,6 @@ IF $(ConfigurationName) EQU "Release" mkdir build
 :bwrapup
 mkdir build
 move PeridotServer.exe build
-move Peridot.dll build
-winrar a -afzip $(SolutionDir)/PeridotServer/bin/Release/PeridotServer.zip  $(SolutionDir)/PeridotServer/bin/Release/build</PostBuildEvent>
+move Peridot.dll build</PostBuildEvent>
   </PropertyGroup>
 </Project>

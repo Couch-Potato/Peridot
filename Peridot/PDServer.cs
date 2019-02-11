@@ -20,7 +20,7 @@ namespace Peridot
         "default.html",
         "default.htm"
     };
-        private static IDictionary<string, string> _mimeTypeMappings = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase) {
+        public static IDictionary<string, string> _mimeTypeMappings = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase) {
         #region extension to MIME type list
         {".asf", "video/x-ms-asf"},
         {".asx", "video/x-ms-asf"},
@@ -204,6 +204,8 @@ namespace Peridot
             bool found = false;
             foreach (CSharpWebpage pe in Webpages)
             {
+                
+                PDLogger.Log($"FINDING CANDIDATE: {pe.PageLink} &&  IN ({filename})", 5);
                 if (filename.Contains("/" + pe.PageLink))
                 {
                     found = true;
@@ -213,6 +215,7 @@ namespace Peridot
                     pe.WEBPAGE_Callback(new Session(context));
                   
                     PDLogger.Log($"Finished Processing PDX Endpoint ID:: {pe.PageLink}", 5);
+                    return;
                 }
             }
             if (!found)
@@ -227,6 +230,7 @@ namespace Peridot
                     if (end.Hostname + ":" + end.port.ToString() == context.Request.UserHostName || end.Hostname == context.Request.UserHostName)
                     {
                         bool allow = true;
+                        string reason = "NONE GIVEN";
                         PDLogger.Log($"Entering custom endpoint {end.Hostname}", 4);
                         if (end.IPWhitelist.Count > 0)
                         {
@@ -235,6 +239,7 @@ namespace Peridot
                             {
                                 if (ip == context.Request.RemoteEndPoint.Address.ToString())
                                 {
+                                    reason = "IP_WHITELIST_ENABLED";
                                     allow = true;
                                 }
                             }
@@ -243,6 +248,7 @@ namespace Peridot
                         {
                             if (blacklist == context.Request.RemoteEndPoint.Address.ToString())
                             {
+                                reason = "IP_BLACKLIST_MATCH";
                                 allow = false;
                             }
                         }
@@ -293,13 +299,16 @@ namespace Peridot
                             }
                             if (!authed)
                             {
-                                //iSession.CreateCookie("PERIDOT_USER_BASIC_AUTH", "");
+                                PDLogger.Log("ERROR 401 GIVEN - REASON: INVALID CREDENTIALS/AUTH TOKEN. REAUTHORIZATION REQUIRED.",4);
+                                iSession.CreateCookie("PERIDOT_USER_BASIC_AUTH", "request");
                                 writeHtml(context, Config.ErrorConfig.Error401, HttpStatusCode.Unauthorized);
+                                
                                 return;
                             }
                         }
                         if (!allow)
                         {
+                            PDLogger.Log($"ERROR 404 GIVEN - REASON: {reason}", 4);
                             writeHtml(context, Config.ErrorConfig.Error403, HttpStatusCode.Forbidden);
                             return;
                         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Peridot
 {
-    class PDLogger
+    public class PDLogger
     {
         public static int LogLevel = 3;
         public static void Log(string log, int logLevel, string stack="")

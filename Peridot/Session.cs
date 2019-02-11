@@ -133,6 +133,14 @@ namespace Peridot
             context.Response.OutputStream.Flush();
             context.Response.OutputStream.Close();
         }
+        public void setStatusCode(HttpStatusCode code)
+        {
+            var context = PageContext;
+            context.Response.StatusCode = (int)code;
+            context.Response.OutputStream.Flush();
+            context.Response.OutputStream.Close();
+            
+        }
         public void CreateCookie(string key, string value)
         {
             var cx = PageContext;

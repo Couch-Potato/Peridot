@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Peridot.Config
 {
-    class ErrorConfig
+    public class ErrorConfig
     {
         public static string Error404 = "";
         public static string Error500 = "";
@@ -40,7 +40,7 @@ namespace Peridot.Config
         }
         public static void loadDefaultErrorPages()
         {
-            Error401 = loadInternalFile("Peridot.Error_Pages.403.html");
+            Error401 = loadInternalFile("Peridot.Error_Pages.401.html");
             Login = loadInternalFile("Peridot.Error_Pages.login.html");
             Error403 = loadInternalFile("Peridot.Error_Pages.403.html");
             Error404 = loadInternalFile("Peridot.Error_Pages.404.html");

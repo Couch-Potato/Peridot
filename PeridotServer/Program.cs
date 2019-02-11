@@ -36,12 +36,16 @@ namespace PeridotServer
         }
         static void Main(string[] args)
         {
+
+          
+            
             CSharpCodeProvider provider = new CSharpCodeProvider();
-            string defaultConf = @"PeridotHttpServer peridot = new PeridotHttpServer(""public_html"",81);";
+            string defaultConf = @"PeridotHttpServer peridot = new PeridotHttpServer(""public_html"",80);";
             if (!File.Exists("peridotConf.pcs"))
             {
                 Directory.CreateDirectory("public_html");
                 File.WriteAllText("public_html/index.html", loadInternalFile("PeridotServer.default_page.welcome.html"));
+                File.WriteAllText("public_html/favicon.ico", loadInternalFile("PeridotServer.peridot.ico"));
                 File.WriteAllText("peridotConf.pcs", defaultConf);
             }
             string src = @"using System;
@@ -56,6 +60,7 @@ namespace PDT
         public static void Conf()
         {
             "+System.IO.File.ReadAllText("peridotConf.pcs")+@"
+             Console.ReadLine();
         }
     }
 }
