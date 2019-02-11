@@ -18,3 +18,23 @@ c:\users\jeremy\source\repos\Peridot\Peridot\obj\Debug\Peridot.dll
 c:\users\jeremy\source\repos\Peridot\Peridot\obj\Debug\Peridot.pdb
 c:\users\jeremy\source\repos\Peridot\Peridot\obj\Debug\Peridot.Properties.Resources.resources
 c:\users\jeremy\source\repos\Peridot\Peridot\obj\Debug\Peridot.csproj.GenerateResource.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Peridot.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Peridot.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\LetsEncrypt.Owin.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Microsoft.Owin.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Microsoft.Owin.FileSystems.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Microsoft.Owin.StaticFiles.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Owin.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Microsoft.Owin.xml
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Microsoft.Owin.FileSystems.xml
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Microsoft.Owin.StaticFiles.xml
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Debug\Peridot.csprojAssemblyReference.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Debug\Peridot.Properties.Resources.resources
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Debug\Peridot.csproj.GenerateResource.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Debug\Peridot.csproj.CoreCompileInputs.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Debug\Peridot.csproj.CopyComplete
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Debug\Peridot.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Debug\Peridot.pdb

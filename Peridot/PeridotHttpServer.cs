@@ -20,6 +20,8 @@ namespace Peridot
         public void createApplicationEndpoint(string endpoint, string folder)
         {
             currentApp.appFolder = folder;
+            p.Webpages.Add(new CSharpWebpage(endpoint + "/form", currentApp.runForm));
+            PDLogger.Log($"CREATED APPLICATION ENDPOINT {endpoint + "/form"}", 5);
             p.Webpages.Add(new CSharpWebpage(endpoint + "/run", currentApp.runScript));
             PDLogger.Log($"CREATED APPLICATION ENDPOINT {endpoint + "/run"}", 5);
             p.Webpages.Add(new CSharpWebpage(endpoint + "/assets", currentApp.assets));

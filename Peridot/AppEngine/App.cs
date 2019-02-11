@@ -95,6 +95,28 @@ namespace Peridot.AppEngine
                 // context.Response.StatusCode = (int)HttpStatusCode.NotFound;
             }
         }
+        private string getFormEncode(string data, string name)
+        {
+            foreach (string s in data.Split('&'))
+            {
+                if (s.Split('=')[0] == name)
+                {
+                    return s.Split('=')[1];
+                }
+            }
+            return null;
+        }
+        private Form getForm(string data)
+        {
+            Form returnForm = new Form();
+            foreach (string s in data.Split('&'))
+            {
+                FormField f = new FormField();
+                f.Field = s.Split('=')[0];
+                f.Value = s.Split('=')[1];
+            }
+            return returnForm;
+        }
         public void cback(Session s)
         {
             string token = s.GetCookie("PERIDOT_APP_TOKEN");
@@ -113,6 +135,70 @@ namespace Peridot.AppEngine
             a.Token = newToken;
             users.Add(a);
             s.GenerateHTMLOutput($"<script>{loadInternalFile("Peridot.AppEngine.app_api.js")}</script>" + System.IO.File.ReadAllText(appFolder + "/" + a.CurrentPage));
+        }
+        public string getFormEncodeString(HttpListenerContext context)
+        {
+            string text;
+            using (var reader = new StreamReader(context.Request.InputStream,
+                                                 context.Request.ContentEncoding))
+            {
+                text = reader.ReadToEnd();
+            }
+            return text;
+        }
+        public void runForm(Session s)
+        {
+            PDLogger.Log($"STARTING SCRIPT RUN:: {s.getParameter("script")}.cs", 5);
+            CSharpCodeProvider provider = new CSharpCodeProvider();
+            CompilerParameters param = new CompilerParameters { GenerateExecutable = false, GenerateInMemory = true };
+            param.ReferencedAssemblies.Add("Peridot.dll");
+            param.ReferencedAssemblies.Add("System.dll");
+            foreach (string file in Directory.GetFiles(appFolder))
+            {
+                FileInfo f = new FileInfo(file);
+                if (f.Name.Contains(".dll"))
+                {
+                    param.ReferencedAssemblies.Add(f.Name);
+                }
+            }
+            PDLogger.Log($"Loaded internal librarys", 5);
+            string scriptToExecute = s.getParameter("script") + ".cs";
+            string src = File.ReadAllText(appFolder + "/" + scriptToExecute);
+            CompilerResults results = provider.CompileAssemblyFromSource(param, src);
+            if (results.Errors.Count != 0)
+            {
+                PDLogger.Log($"Failed to load script: {scriptToExecute} (Compiler errors)", 1);
+                foreach (CompilerError error in results.Errors)
+                {
+                    PDLogger.Log($"{error.ErrorText} in line {error.Line} ({error.ErrorNumber})", 1);
+                }
+                return;
+            }
+            PDLogger.Log($"COMPILED SCRIPT:: {s.getParameter("script")}.cs", 5);
+            try
+            {
+                object o = results.CompiledAssembly.CreateInstance("PeridotApp." + s.getParameter("script"));
+                MethodInfo mi = o.GetType().GetMethod("main");
+                AppSession asa = new AppSession();
+                asa.session = s;
+                asa.appUser = getAppUser(s.GetCookie("PERIDOT_APP_TOKEN"));
+                asa.appAPI = this;
+                if (asa.appUser != null)
+                {
+                    string returns = (string)mi.Invoke(o, new object[] { asa , getForm(getFormEncodeString(s.PageContext))});
+                    s.GenerateHTMLOutput(returns);
+                    PDLogger.Log($"EXECUTED SCRIPT:: {s.getParameter("script")}.cs", 5);
+                }
+                else
+                {
+                    PDLogger.Log($"Got a null APPUSER request which violates app policy. (Internal Sources Only)", 4);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                PDLogger.Log($"Failed to run script: {scriptToExecute} ({ex.Message})", 1);
+            }
         }
         public void runScript(Session s)
         {
@@ -245,6 +331,26 @@ namespace Peridot.AppEngine
         public Session session;
         public AppUser appUser;
         public App appAPI;
+    }
+    public class Form
+    {
+        List<FormField> formFields = new List<FormField>();
+        public string GetField(string name)
+        {
+            foreach (FormField field in formFields)
+            {
+                if (field.Field == name)
+                {
+                    return field.Value;
+                }
+            }
+            return "";
+        }
+    }
+    public class FormField
+    {
+        public string Field;
+        public string Value;
     }
     public class AppUser
     {

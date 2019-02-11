@@ -8,3 +8,13 @@ c:\Users\Jeremy\source\repos\Peridot\PeridotServer\obj\Release\PeridotServer.csp
 c:\Users\Jeremy\source\repos\Peridot\PeridotServer\obj\Release\PeridotServer.csproj.CopyComplete
 c:\Users\Jeremy\source\repos\Peridot\PeridotServer\obj\Release\PeridotServer.exe
 c:\Users\Jeremy\source\repos\Peridot\PeridotServer\obj\Release\PeridotServer.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Release\PeridotServer.exe.config
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Release\PeridotServer.exe
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Release\PeridotServer.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Release\Peridot.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Release\Peridot.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Release\PeridotServer.csprojAssemblyReference.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Release\PeridotServer.csproj.CoreCompileInputs.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Release\PeridotServer.csproj.CopyComplete
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Release\PeridotServer.exe
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Release\PeridotServer.pdb

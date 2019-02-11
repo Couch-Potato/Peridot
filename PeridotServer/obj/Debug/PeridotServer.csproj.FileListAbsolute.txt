@@ -8,3 +8,13 @@ c:\Users\Jeremy\source\repos\Peridot\PeridotServer\obj\Debug\PeridotServer.pdb
 c:\Users\Jeremy\source\repos\Peridot\PeridotServer\bin\Debug\Peridot.dll
 c:\Users\Jeremy\source\repos\Peridot\PeridotServer\bin\Debug\Peridot.pdb
 c:\Users\Jeremy\source\repos\Peridot\PeridotServer\obj\Debug\PeridotServer.csproj.CopyComplete
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Debug\PeridotServer.exe.config
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Debug\PeridotServer.exe
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Debug\PeridotServer.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Debug\Peridot.dll
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\bin\Debug\Peridot.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Debug\PeridotServer.csprojAssemblyReference.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Debug\PeridotServer.csproj.CoreCompileInputs.cache
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Debug\PeridotServer.csproj.CopyComplete
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Debug\PeridotServer.exe
+C:\Users\Jeremy Cofield\Desktop\Peridot\PeridotServer\obj\Debug\PeridotServer.pdb
