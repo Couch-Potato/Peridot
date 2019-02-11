@@ -8,6 +8,7 @@ namespace Peridot
 {
     public class PeridotHttpServer
     {
+        
         public Config.Config peridotConfiguration = new Config.Config();
         PDServer p;
         AppEngine.App currentApp = new AppEngine.App();
@@ -30,6 +31,11 @@ namespace Peridot
             PDLogger.Log($"CREATED APPLICATION ENDPOINT {endpoint}", 5);
             
             
+        }
+        public void addPlugin(string pluginName)
+        { 
+            PDLogger.Log($"Registered Plugin:: {pluginName}", 3);
+            p.Plugins.Add(pluginName);
         }
         public void createCSharpEndpoint(string endpoint, CSharpWebpage.EPL callback)
         {

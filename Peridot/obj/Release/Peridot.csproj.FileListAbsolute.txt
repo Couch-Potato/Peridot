@@ -37,3 +37,4 @@ C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Release\Peridot.csproj.CoreC
 C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Release\Peridot.csproj.CopyComplete
 C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Release\Peridot.dll
 C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Release\Peridot.pdb
+C:\Users\Jeremy Cofield\Desktop\Peridot\Peridot\obj\Release\Peridot.csprojAssemblyReference.cache

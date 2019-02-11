@@ -69,6 +69,7 @@
     <Compile Include="PDLogger.cs" />
     <Compile Include="PDServer.cs" />
     <Compile Include="PeridotHttpServer.cs" />
+    <Compile Include="PluginEngine\Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

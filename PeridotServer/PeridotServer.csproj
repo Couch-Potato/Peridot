@@ -85,6 +85,7 @@
     <EmbeddedResource Include="default_page\welcome.html" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="default_page\favicon.ico" />
     <Content Include="peridot.ico" />
   </ItemGroup>
   <ItemGroup>

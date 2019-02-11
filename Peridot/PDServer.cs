@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.CSharp;
+using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace Peridot
 {
     public class PDServer
     {
+        public List<string> Plugins = new List<string>();
         public List<CSharpWebpage> Webpages = new List<CSharpWebpage>();
         public List<CustomEndpoint> customEndpoints = new List<CustomEndpoint>();
         private readonly string[] _indexFiles = {
@@ -185,6 +188,10 @@ namespace Peridot
             context.Response.OutputStream.Flush();
             context.Response.OutputStream.Close();
 
+        }
+        private PluginEngine.HttpResponse executePlugin(string plugin)
+        {
+            return null;
         }
         private string getFormEncode(string data, string name)
         {

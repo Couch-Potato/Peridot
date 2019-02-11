@@ -44,8 +44,9 @@ namespace PeridotServer
             if (!File.Exists("peridotConf.pcs"))
             {
                 Directory.CreateDirectory("public_html");
+                Directory.CreateDirectory("plugins");
                 File.WriteAllText("public_html/index.html", loadInternalFile("PeridotServer.default_page.welcome.html"));
-                File.WriteAllText("public_html/favicon.ico", loadInternalFile("PeridotServer.peridot.ico"));
+                File.WriteAllText("public_html/favicon.ico", loadInternalFile("PeridotServer.default_page.favicon.ico"));
                 File.WriteAllText("peridotConf.pcs", defaultConf);
             }
             string src = @"using System;
