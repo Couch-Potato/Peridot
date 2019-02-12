@@ -10,7 +10,7 @@ namespace Peridot.PluginEngine
     {
         PeridotHttpServer peridot;
         Session s;
-        
+        public enum PluginArrayScope { ConnectionHandler, Startup, Both, None};
     }
     public class HttpResponse
     {

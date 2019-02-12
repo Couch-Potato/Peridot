@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace Peridot
     public class PDServer
     {
         public List<string> Plugins = new List<string>();
+        public List<IPExecutable> PLUGINS = new List<IPExecutable>();
         public List<CSharpWebpage> Webpages = new List<CSharpWebpage>();
         public List<CustomEndpoint> customEndpoints = new List<CustomEndpoint>();
         private readonly string[] _indexFiles = {
@@ -189,9 +191,55 @@ namespace Peridot
             context.Response.OutputStream.Close();
 
         }
-        private PluginEngine.HttpResponse executePlugin(string plugin)
+        private PluginEngine.HttpResponse executePluginConnect(string plugin)
         {
             return null;
+        }
+        private void executePluginStart(string plugin)
+        {
+
+        }
+        private PluginEngine.Plugin.PluginArrayScope getScope(string plugin)
+        {
+            PDLogger.Log($"GETTING PLUGIN SCOPE:: {plugin}.cs", 5);
+            CSharpCodeProvider provider = new CSharpCodeProvider();
+            CompilerParameters param = new CompilerParameters { GenerateExecutable = false, GenerateInMemory = true };
+            param.ReferencedAssemblies.Add("Peridot.dll");
+            param.ReferencedAssemblies.Add("System.dll");
+            string appFolder = "plugins/";
+            foreach (string file in Directory.GetFiles("plugins/"))
+            {
+                FileInfo f = new FileInfo(file);
+                if (f.Name.Contains(".dll"))
+                {
+                    param.ReferencedAssemblies.Add(f.Name);
+                }
+            }
+            PDLogger.Log($"Loaded internal librarys for {plugin}", 5);
+            string scriptToExecute = plugin + ".cs";
+            string src = File.ReadAllText(appFolder + "/" + scriptToExecute);
+            CompilerResults results = provider.CompileAssemblyFromSource(param, src);
+            if (results.Errors.Count != 0)
+            {
+                PDLogger.Log($"Failed to load plugin: {scriptToExecute} (Compiler errors)", 1);
+                foreach (CompilerError error in results.Errors)
+                {
+                    PDLogger.Log($"{error.ErrorText} in line {error.Line} ({error.ErrorNumber})", 1);
+                }
+                return PluginEngine.Plugin.PluginArrayScope.None;
+            }
+            PDLogger.Log($"COMPILED SCRIPT:: {plugin}.cs", 5);
+            try
+            {
+                object o = results.CompiledAssembly.CreateInstance("PeridotApp." + plugin);
+                MethodInfo mi = o.GetType().GetMethod("scope");
+                PluginEngine.Plugin.PluginArrayScope scope = (PluginEngine.Plugin.PluginArrayScope)mi.Invoke(o, null);
+            }
+            catch (Exception ex)
+            {
+                PDLogger.Log($"Failed to run script: {scriptToExecute} ({ex.Message})", 1);
+            }
+            return PluginEngine.Plugin.PluginArrayScope.None;
         }
         private string getFormEncode(string data, string name)
         {
@@ -423,6 +471,11 @@ namespace Peridot
             _serverThread.Abort();
             _listener.Stop();
         }
+    }
+    public class IPExecutable
+    {
+        PluginEngine.Plugin.PluginArrayScope Scope;
+        string Name;
     }
     public class CSharpWebpage
     {
